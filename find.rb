@@ -59,6 +59,7 @@ end
 if __FILE__==$0
   require 'open-uri'
   require 'json'
+  require 'yaml'
   require 'nokogiri'
   require 'set'
 
@@ -76,7 +77,9 @@ if __FILE__==$0
 
   puts "got #{foundForks.length} direct forks, #{foundSearches.length} search results"
 
-  used = File.open("used.txt", "rb").read.split(/\n/).to_set
+
+  usedf = YAML.load_file('used.yml')
+  used = usedf["used"].to_set
   ignored = []
 
   puts "forks:"
